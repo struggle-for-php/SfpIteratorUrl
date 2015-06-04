@@ -62,14 +62,15 @@ class StreamWrapper
     
     public function stream_seek($offset, $whence = SEEK_SET )
     {
-        if ($whence != SEEK_END ) {
+        if ($whence == SEEK_END ) {
             // not support yet
             return false;
         }
-        
+
         if ($whence === SEEK_CUR) {
             $this->stream_read($offset);
         }
+
         
         if ($offset > $this->length) {
             return false;
@@ -80,7 +81,9 @@ class StreamWrapper
     
     public function stream_stat()
     {
-        return method_exists($this->iterator, __FUNCTION__) ? $this->iterator->{__FUNCTION__}() : []; 
+        return method_exists(
+            $this->iterator, __FUNCTION__
+        ) ? $this->iterator->{__FUNCTION__}() : []; 
     }
     
     public function stream_tell()
