@@ -1,0 +1,20 @@
+{
+    "name": "struggle-for-php/sfp-iterator-url",
+    "description": "A streamWrapper for Iterator",
+    "license": "BSD-3-Clause",
+    "keywords": ["streamWrapper", "stream", "iterator"],
+    "authors": [
+        {
+            "name": "sasezaki",
+            "email": "sasezaki@gmail.com",
+            "homepage": "http://github.com/sasezaki",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.5"     
+    },
+    "autoload": {
+        "psr-4": { "SfpIteratorUrl\\": "src/SfpIteratorUrl/" }
+    }
+}
