@@ -14,7 +14,15 @@
     "require": {
         "php": ">=5.5"     
     },
+    "require-dev": {
+        "phpunit/phpunit": "~4.6"
+    },
     "autoload": {
         "psr-4": { "SfpIteratorUrl\\": "src/SfpIteratorUrl/" }
+    },
+    "autoload-dev" : {
+        "psr-4" : {
+            "SfpIteratorUrlTest\\" : "tests/SfpIteratorUrlTest"
+      }
     }
 }
