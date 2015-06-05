@@ -1,6 +1,8 @@
 SfpIteratorUrl
 ==============
 
+[![Build Status](https://travis-ci.org/struggle-for-php/SfpIteratorUrl.png?branch=master)](https://travis-ci.org/struggle-for-php/SfpIteratorUrl)
+
 A streamWrapper for Iterator.
 
 ## Why ?
