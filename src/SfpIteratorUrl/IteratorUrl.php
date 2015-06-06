@@ -27,7 +27,7 @@ class IteratorUrl
 
         $ctx = stream_context_create([
             StreamWrapper::class => [
-                StreamWrapper::CONTEXT_KEY_ITERATOR => $iterator,
+                StreamWrapper::KEY_CONTEXT => $iterator,
             ],
         ]);
 
