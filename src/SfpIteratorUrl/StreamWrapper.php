@@ -66,7 +66,7 @@ class StreamWrapper
             return false;
         }
 
-        $this->iterator = $opt[self::class]['iterator'];
+        $this->iterator = $opt[self::class][static::KEY_CONTEXT];
 
         return true;
     }
