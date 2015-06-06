@@ -83,7 +83,8 @@ class StreamWrapper
     public function stream_stat()
     {
         return method_exists(
-            $this->iterator, __FUNCTION__
+            $this->iterator,
+            __FUNCTION__
         ) ? $this->iterator->{__FUNCTION__}() : [];
     }
 
