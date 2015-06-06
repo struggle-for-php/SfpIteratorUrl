@@ -20,9 +20,9 @@ class IteratorUrl
         }
     }
 
-    public function open(Iterator $iterator, $register_auto = true)
+    public function open(Iterator $iterator, $auto_register_disable = false)
     {
-        ($register_auto) ?: $this->register();
+        ($auto_register_disable) ?: $this->register();
         $iterator->rewind();
 
         $ctx = stream_context_create([
