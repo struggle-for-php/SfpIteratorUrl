@@ -8,7 +8,7 @@ class IteratorUrl
 {
     protected $protocol;
 
-    public function __construct($protocol = 'SfpIteratorUrl')
+    public function __construct($protocol = 'sfp.iterator')
     {
         $this->protocol = $protocol;
     }
@@ -20,9 +20,9 @@ class IteratorUrl
         }
     }
 
-    public function open(Iterator $iterator)
+    public function open(Iterator $iterator, $register_auto = true)
     {
-        $this->register();
+        ($register_auto) ?: $this->register();
         $iterator->rewind();
 
         $ctx = stream_context_create([

@@ -2,9 +2,13 @@
 
 namespace SfpIteratorUrl;
 
+/**
+ * implements streamWrapper
+ * http://php.net/manual/en/class.streamwrapper.php.
+ */
 class StreamWrapper
 {
-    const CONTEXT_KEY_ITERATOR = 'iterator';
+    const KEY_CONTEXT = 'sfp.iterator';
 
     public $context;
 
@@ -20,13 +24,35 @@ class StreamWrapper
      */
     private $length = 0;
 
+    /**
+     * remained strings on reading.
+     *
+     * @var string
+     */
     private $remains = '';
 
+    /**
+     * implements streamWrapper::stream_eof
+     * http://php.net/manual/en/streamwrapper.stream-eof.php.
+     *
+     * @return bool
+     */
     public function stream_eof()
     {
         return !$this->iterator->valid();
     }
 
+    /**
+     * implements streamWrapper::stream_open
+     * http://php.net/manual/en/streamwrapper.stream-open.php.
+     *
+     * @param string $path
+     * @param string $mode
+     * @param int    $options
+     * @param string $opened_path
+     *
+     * @return bool
+     */
     public function stream_open($path, $mode, $options, &$opened_path)
     {
         if (!preg_match('/^r[bt]?$/', $mode) || !$this->context) {
@@ -36,7 +62,7 @@ class StreamWrapper
         $opt = stream_context_get_options($this->context);
 
         if (!is_array($opt[static::class]) ||
-            !isset($opt[static::class][static::CONTEXT_KEY_ITERATOR])) {
+            !isset($opt[static::class][static::KEY_CONTEXT])) {
             return false;
         }
 
@@ -80,6 +106,12 @@ class StreamWrapper
         return true;
     }
 
+    /**
+     * if iterator property has stream_stat() method,
+     * will be use it.
+     *
+     * @return array
+     */
     public function stream_stat()
     {
         return method_exists(
@@ -88,6 +120,9 @@ class StreamWrapper
         ) ? $this->iterator->{__FUNCTION__}() : [];
     }
 
+    /**
+     * @return int
+     */
     public function stream_tell()
     {
         return $this->length;
