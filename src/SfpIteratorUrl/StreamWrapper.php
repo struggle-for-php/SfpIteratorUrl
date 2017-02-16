@@ -13,7 +13,7 @@ class StreamWrapper
     public $context;
 
     /**
-     * @var Iterator
+     * @var \Iterator
      */
     private $iterator;
 
