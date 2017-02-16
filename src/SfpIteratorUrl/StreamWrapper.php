@@ -107,7 +107,7 @@ class StreamWrapper
     }
 
     /**
-     * if iterator property has stream_stat() method,
+     * If iterator has stream_stat() method,
      * will be use it.
      *
      * @return array
@@ -117,7 +117,21 @@ class StreamWrapper
         return method_exists(
             $this->iterator,
             __FUNCTION__
-        ) ? $this->iterator->{__FUNCTION__}() : [];
+        ) ? $this->iterator->{__FUNCTION__}() : [
+            'dev' => -1,
+            'ino' => -1,
+            'mode' => -1,
+            'nlink' => -1,
+            'uid' => -1,
+            'gid' => -1,
+            'rdev' => -1,
+            'size' => -1,
+            'atime' => -1,
+            'mtime' => -1,
+            'ctime' => -1,
+            'blksize' => -1,
+            'blocks' => -1,
+        ];
     }
 
     /**
